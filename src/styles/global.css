@@ -4,7 +4,12 @@
 @layer base {
   :root {
     font-family: "Hind", sans-serif;
+    height: 80%;
     scroll-behavior: smooth;
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(ellipse at top center, color-mix(in oklch, var(--color-primary) 30%, transparent) 0%, transparent 40%), radial-gradient(circle at center, var(--color-background-secondary) 15%, var(--color-background) 50%);
+    background-repeat: no-repeat, no-repeat;
     @apply text-foreground bg-background duration-300;
   }
 
