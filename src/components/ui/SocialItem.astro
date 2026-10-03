@@ -1,16 +1,20 @@
 ---
-import Flecha from '@assets/icons/Flecha.svg';
+import Flecha from "@assets/icons/Flecha.svg";
 
 interface Props {
   link: string;
-  label: string
+  label: string;
 }
 const { link, label } = Astro.props as Props;
 ---
-<a href={link} class="px-4 py-2.5 bg-neutral-950 bg-linear-to-r from-neutral-950 to-neutral-900 bg-no-repeat bg-position-[left_center] bg-size-[0%_100%] hover:bg-size-[100%_100%] outline-neutral-900 inline-flex items-center gap-3 group transition-all border border-neutral-900 duration-500">
-    <div class="flex items-center gap-3 md:gap-5">
-        <slot/>
-        <div>{label}</div>
-    </div>
-    <Flecha class={"size-3 md:size-4 rotate-0 group-hover:-rotate-45 duration-500"}/>
+
+<a
+  href={link}
+  class="px-4 py-2.5 bg-neutral-950 bg-linear-to-r from-neutral-950 to-neutral-900 bg-no-repeat bg-position-[left_center] bg-size-[0%_100%] hover:bg-size-[100%_100%] outline-neutral-900 inline-flex items-center gap-3 group transition-all border border-neutral-900 duration-500"
+>
+  <div class="flex items-center gap-3 md:gap-5">
+    <slot />
+    <div>{label}</div>
+  </div>
+  <Flecha class={"size-3 md:size-4 rotate-0 group-hover:-rotate-45 duration-500"} />
 </a>

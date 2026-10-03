@@ -1,76 +1,39 @@
 @import "tailwindcss";
+@import "@styles/theme/light.css";
 
-@theme
-{
-  --font-jost: 'Jost', sans-serif;
-  --font-kodchasan: 'Kodchasan', sans-serif;
-}
+@layer base {
+  :root {
+    font-family: "Hind", sans-serif;
+    scroll-behavior: smooth;
+    @apply text-foreground bg-background duration-300;
+  }
 
-@utility f-h1
-{
-  @apply font-kodchasan transition-all text-white font-bold text-3xl md:text-3xl lg:text-5xl xl:text-7xl leading-snug;
-}
+  h1 {
+    @apply font-kodchasan font-bold text-h1 leading-snug;
+  }
 
-@utility f-h2
-{
-  @apply font-kodchasan transition-all text-white font-bold text-3xl md:text-3xl lg:text-5xl xl:text-6xl leading-snug;
-}
+  h2 {
+    @apply font-kodchasan font-bold text-h2 leading-snug;
+  }
 
-@utility f-h3
-{
-  @apply font-kodchasan transition-all text-white font-bold text-sm md:text-sm lg:text-2xl xl:text-3xl leading-snug;
-}
+  h3 {
+    @apply font-kodchasan font-bold text-h3 leading-snug;
+  }
 
-@utility f-h4
-{
-  @apply font-kodchasan transition-all text-white font-bold text-xs md:text-xs lg:text-xs xl:text-base leading-snug;
-}
+  p {
+    @apply text-base font-jost leading-snug;
+  }
 
-@utility f-xl
-{
-  @apply duration-75 font-jost text-lg md:text-lg lg:text-2xl xl:text-4xl;
-}
+  a {
+    @apply hover:text-primary-foreground duration-300 font-semibold leading-snug;
+  }
 
-@utility f-lg
-{
-  @apply duration-75 font-jost text-base md:text-base lg:text-xl xl:text-3xl;
-}
+  input,
+  textarea {
+    @apply placeholder:text-foreground-muted p-2.5 border rounded-lg border-background-tertiary;
+  }
 
-@utility f-base
-{
-  @apply duration-75 font-jost text-sm md:text-sm lg:text-lg xl:text-2xl;
-}
-
-@utility f-sm
-{
-  @apply duration-75 font-jost text-xs md:text-xs lg:text-sm xl:text-base;
-}
-
-@utility f-xs
-{
-  @apply duration-75 font-jost text-xs md:text-xs lg:text-xs xl:text-xs
-}
-
-@utility b-round
-{
-  @apply rounded md:rounded-md lg:rounded-lg xl:rounded-lg;
-}
-
-@utility b-round-t
-{
-  @apply rounded-t-sm md:rounded-t-md lg:rounded-t-lg xl:rounded-t-lg;
-}
-
-@utility b-px
-{
-  @apply px-2 md:px-12 lg:px-14 xl:px-16 2xl:px-28
-}
-
-@utility b-mb
-{
-  @apply mb-5 md:mb-8 lg:mb-11 xl:mb-16
-}
-
-@utility icon-min{
-  @apply size-3 md:size-4 lg:size-5
+  textarea {
+    @apply min-h-32;
+  }
 }

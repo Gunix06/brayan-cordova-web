@@ -7,76 +7,76 @@ import Mensaje from "@assets/icons/Mensaje.svg";
 import Title from "@components/ui/Title.astro";
 import Input from "@components/ui/Input.astro";
 import Button from "@components/ui/Button.astro";
+import { actions } from "astro:actions";
+
+const result = Astro.getActionResult(actions.send);
 ---
 
-<div class='flex flex-col items-center gap-6'>
-  <Title id='section-contact' title='Contacto' description='Construyamos tu próximo ecosistema digital' />
+<div class="flex flex-col items-center gap-6">
+  <Title id="section-contact" title="Contacto" description="Construyamos tu próximo ecosistema digital" />
 
-  <div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
-    <div class='flex p-5 flex-col gap-8'>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="flex p-5 flex-col gap-8">
       <CardOffer
-        title='Creación de Experiencias Web de Alto Impacto'
-        description='Me especializo en desarrollar plataformas web completas enfocadas en optimizar la experiencia del usuario y mejorar el rendimiento general. Mi objetivo es crear soluciones que no solo sean funcionales, sino que también aumenten la visibilidad y el alcance.'
+        title="Creación de Experiencias Web de Alto Impacto"
+        description="Me especializo en desarrollar plataformas web completas enfocadas en optimizar la experiencia del usuario y mejorar el rendimiento general. Mi objetivo es crear soluciones que no solo sean funcionales, sino que también aumenten la visibilidad y el alcance."
       >
-        <Cohete class='size-4' />
+        <Cohete class="size-4" />
       </CardOffer>
       <CardOffer
-        title='Construcción de Soluciones Técnicas Robustas y Escalables'
-        description='Aplico mis conocimientos en tecnologías modernas para desarrollar productos digitales sólidos y con capacidad de crecimiento. Tengo un fuerte enfoque en la resolución de problemas y la entrega de código limpio y eficiente.'
+        title="Construcción de Soluciones Técnicas Robustas y Escalables"
+        description="Aplico mis conocimientos en tecnologías modernas para desarrollar productos digitales sólidos y con capacidad de crecimiento. Tengo un fuerte enfoque en la resolución de problemas y la entrega de código limpio y eficiente."
       >
-        <Personsgroup class='size-4' />
+        <Personsgroup class="size-4" />
       </CardOffer>
       <CardOffer
-        title='Atención a la Calidad y Adaptabilidad Multiplataforma'
-        description='Mi trabajo se caracteriza por la atención al detalle, garantizando que las soluciones sean robustas, fáciles de usar y se adapten perfectamente a cualquier dispositivo, ofreciendo una experiencia de usuario consistente y de alta calidad.'
+        title="Atención a la Calidad y Adaptabilidad Multiplataforma"
+        description="Mi trabajo se caracteriza por la atención al detalle, garantizando que las soluciones sean robustas, fáciles de usar y se adapten perfectamente a cualquier dispositivo, ofreciendo una experiencia de usuario consistente y de alta calidad."
       >
-        <Diamante class='size-4' />
+        <Diamante class="size-4" />
       </CardOffer>
     </div>
 
     <div>
-      <div id='confirmation-message' class='hidden p-3 mb-4 body-rounded bg-green-700 text-center'>Correo enviado correctamente.</div>
-      <div id='error-message' class='hidden p-3 mb-4 rounded bg-red-700 text-white text-center'>Ocurrió un error al enviar el mensaje. Intenta nuevamente.</div>
-      <form method='post' class='flex p-2.5 flex-col items-start gap-5'>
-        <Input name='name' label='Nombre completo' type='text' placeholder='Karen Medina' />
-        <Input name='email' label='Correo electrónico' type='email' placeholder='micorreo@ejemplo.com' />
-        <Input name='message' label='Detalle del mensaje' type='text' placeholder='Cuenta sobre de que va a tratar su proyectos, su objetivos, cronograma, entre otras cosas interesantes' textarea />
+      <div id="confirmation-message" class="hidden p-3 mb-4 rounded-2xl bg-green-700 text-center">Correo enviado correctamente.</div>
+      {result?.error && <div class="p-3 mb-4 rounded-2xl bg-red-700 text-center">Ocurrió un error al enviar el mensaje. Intenta nuevamente.</div>}
+      <form method="POST" action={actions.send} class="flex p-2.5 flex-col items-start gap-5">
+        <Input name="name" label="Nombre completo" type="text" placeholder="Karen Medina" />
+        <Input name="email" label="Correo electrónico" type="email" placeholder="micorreo@ejemplo.com" />
+        <Input name="message" label="Detalle del mensaje" type="text" placeholder="Cuenta sobre de que va a tratar su proyectos, su objetivos, cronograma, entre otras cosas interesantes" textarea />
 
-        <div class='cf-turnstile' data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} data-theme='dark' data-language={"es"}></div>
-        
-        <Button type='submit' class='w-full' label='Enviar mensaje'>
-          <Mensaje class='icon-min' />
+        <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} data-theme="dark" data-language={"es"}></div>
+
+        <Button type="submit" class="w-full" label="Enviar mensaje">
+          <Mensaje />
         </Button>
       </form>
     </div>
   </div>
 </div>
-<script is:inline src='https://challenges.cloudflare.com/turnstile/v0/api.js' async defer></script>
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
-  import {actions} from "astro:actions";
+  import { actions } from "astro:actions";
 
   const form = document.querySelector("form") as HTMLFormElement;
   const confirmation = document.getElementById("confirmation-message") as HTMLDivElement;
-  const errorMsg = document.getElementById("error-message") as HTMLDivElement;
 
-  form?.addEventListener("submit", async event => {
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     confirmation.classList.add("hidden");
-    errorMsg.classList.add("hidden");
     const formData = new FormData(form);
     try {
-      const {error} = await actions.send(formData);
+      const { error } = await actions.send(formData);
       if (!error) {
         confirmation.classList.remove("hidden");
         form.reset();
         setTimeout(() => confirmation.classList.add("hidden"), 4000);
       } else {
-        errorMsg.classList.remove("hidden");
-        setTimeout(() => errorMsg.classList.add("hidden"), 4000);
+        console.error("Error al enviar el formulario:", error.message);
+        throw new Error(error.message);
       }
     } catch (e) {
-      errorMsg.classList.remove("hidden");
-      setTimeout(() => errorMsg.classList.add("hidden"), 4000);
+      console.error("Error al enviar el formulario:", e);
     }
   });
 </script>

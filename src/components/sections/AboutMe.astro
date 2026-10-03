@@ -1,40 +1,39 @@
 ---
-import Peru from "@assets/icons/flag/Peru.svg";
+import Peru from "@assets/icons/Peru.svg";
 import SocialItem from "@components/ui/SocialItem.astro";
 import CardExperience from "@components/ui/CardExperience.astro";
 import Title from "@components/ui/Title.astro";
-import {idiomas, experience, education} from "@/content/me";
-import {redes} from "@/content/redes";
+import { langs, experiences, education, networks } from "@/content/me";
 ---
 
-<div class='flex flex-col items-center gap-6 self-stretch'>
-  <Title id='section-aboutme' title='Sobre mi...' description='Descubre mi trayectoria, formación técnica y el stack tecnológico' />
+<div class="flex flex-col items-center gap-6 self-stretch">
+  <Title id="section-aboutme" title="Sobre mi..." description="Descubre mi trayectoria, formación técnica y el stack tecnológico" />
 
-  <div class='flex flex-col items-start self-stretch gap-3 md:gap-5'>
-    <div class='flex justify-between items-center content-center gap-2.5 self-stretch flex-wrap'>
+  <div class="flex flex-col items-start self-stretch gap-3 md:gap-5">
+    <div class="flex justify-between items-center content-center gap-2.5 self-stretch flex-wrap">
       <p>Brayan Cordova</p>
-      <div class='flex items-center gap-4 md:gap-8'>
-        <p class='flex items-center gap-2'>
-          <span class='font-bold'>Edad:</span>
+      <div class="flex items-center gap-4 md:gap-8">
+        <p class="flex items-center gap-2">
+          <span class="font-bold">Edad:</span>
           {new Date().getFullYear() - 2005} años
         </p>
-        <p class='flex items-center gap-2'>
-          <span class='font-bold'>Nacionalidad:</span> Lima, Perú
+        <p class="flex items-center gap-2">
+          <span class="font-bold">Nacionalidad:</span> Lima, Perú
           <Peru width={20} height={20} />
         </p>
       </div>
     </div>
 
-    <p class='text-neutral-400'>
+    <p class="text-foreground-muted">
       Soy un Desarrollador Web con conocimientos en UI/UX y optimización de rendimiento. Más allá de escribir código limpio en entornos como Astro y React, gestiono proyectos de inicio a fin (como Lumia Creators), desde la arquitectura de
       la interfaz hasta la infraestructura técnica en servidores. Me enfoco en entregar productos digitales que no solo se vean bien, sino que sean rápidos, accesibles y escalables.
     </p>
   </div>
 
-  <div class='flex flex-col border border-transparent b-round [border-image:linear-gradient(180deg,#171717_0%,#0A0A0A00_100%)_1] w-full'>
-    <div class='grid grid-flow-col items-center overflow-x-auto self-stretch'>
+  <div class="flex flex-col border border-transparent rounded-xl [border-image:linear-gradient(180deg,#171717_0%,#0A0A0A00_100%)_1] w-full">
+    <div class="grid grid-flow-col items-center overflow-x-auto self-stretch">
       {
-        redes.map(Red => (
+        networks.map((Red) => (
           <SocialItem link={Red.href} label={Red.label}>
             <Red.icon class={"size-4 lg:size-7"} />
           </SocialItem>
@@ -42,32 +41,32 @@ import {redes} from "@/content/redes";
       }
     </div>
 
-    <div class='grid grid-cols-1 md:grid-cols-2'>
-      <div class='flex px-4 py-6 flex-col gap-2 md:gap-4'>
-        <h3 class='f-h3 text-neutral-400'>Experiencia</h3>
-        <div class='flex flex-col items-start gap-2.5 lg:gap-8'>
-          {experience.map(exp => <CardExperience title={exp.title} emp={exp.empresa} description={exp.description} date={exp.date} />)}
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="flex px-4 py-6 flex-col gap-2 md:gap-4">
+        <h3 class="text-primary-foreground">Experiencia</h3>
+        <div class="flex flex-col items-start gap-2.5 lg:gap-8">
+          {experiences.map((exp) => <CardExperience title={exp.title} emp={exp.company} description={exp.description} date={exp.startDate} />)}
         </div>
       </div>
 
-      <div class='flex px-4 py-6 flex-col gap-2 md:gap-4'>
-        <h3 class='f-h3 text-neutral-400'>Educación</h3>
-        <div class='flex flex-col items-start gap-2.5 lg:gap-8'>
-          {education.map(edu => <CardExperience title={edu.title} emp={edu.empresa} date={edu.date} />)}
+      <div class="flex px-4 py-6 flex-col gap-2 md:gap-4">
+        <h3 class="text-primary-foreground">Educación</h3>
+        <div class="flex flex-col items-start gap-2.5 lg:gap-8">
+          {education.map((edu) => <CardExperience title={edu.title} emp={edu.company} date={edu.date} />)}
         </div>
       </div>
     </div>
 
-    <div class='flex py-8 px-4 justify-between items-center flex-wrap border-b border-t border-transparent [border-image:linear-gradient(0deg,#171717_0%,#0A0A0A00_100%)_1]'>
-      <h3 class='f-h3 text-neutral-400'>Idiomas que hablo</h3>
-      <div class='flex items-start gap-8 flex-wrap'>
+    <div class="flex py-8 px-4 justify-between items-center flex-wrap rounded-2xl border-b border-t border-transparent [border-image:linear-gradient(0deg,#171717_0%,#0A0A0A00_100%)_1]">
+      <h3 class="text-foreground-muted">Idiomas que hablo</h3>
+      <div class="flex items-start gap-8 flex-wrap">
         {
-          idiomas.map(idioma => (
-            <div class='flex items-center gap-3'>
+          langs.map((idioma) => (
+            <div class="flex items-center gap-3">
               <idioma.icon class={"size-10 md:size-12"} />
-              <div class='flex flex-col items-start justify-center self-stretch'>
-                <p class='f-sm font-bold'>{idioma.idioma}</p>
-                <p class='f-xs text-neutral-500'>{idioma.nivel}</p>
+              <div class="flex flex-col items-start justify-center self-stretch">
+                <p class="text-sm font-bold">{idioma.idioma}</p>
+                <p class="text-xs text-foreground-muted">{idioma.nivel}</p>
               </div>
             </div>
           ))

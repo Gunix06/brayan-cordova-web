@@ -1,62 +1,49 @@
-import AstroIcon from "@assets/icons/tecnologies/Astro.svg";
-import PreactIcon from "@assets/icons/tecnologies/Preact.svg";
-import TypescriptIcon from "@assets/icons/tecnologies/TypeScript.svg";
-import JavascriptIcon from "@assets/icons/tecnologies/Javascript.svg";
-import TailwindcssIcon from "@assets/icons/tecnologies/TailwindCSS.svg";
-import FigmaIcon from "@assets/icons/tecnologies/Figma.svg";
-import VercelIcon from "@assets/icons/tecnologies/Vercel.svg";
-import NextjsIcon from "@assets/icons/tecnologies/Nextjs.svg";
-import ReactIcon from '@assets/icons/tecnologies/React.svg';
-import NodejsIcon from '@assets/icons/tecnologies/NodeJS.svg';
-import GitIcon from '@assets/icons/tecnologies/Git.svg';
-import MysqlIcon from '@assets/icons/tecnologies/MySQL.svg';
-import BootstrapIcon from '@assets/icons/tecnologies/Bootstrap.svg';
-import SeoIcon from '@assets/icons/tecnologies/SEO.svg';
-import GoogleAnalitycsIcon from '@assets/icons/tecnologies/Google Analytics.svg';
-import OracleVmVirtualBoxIcon from '@assets/icons/tecnologies/Oracle VM Virtual Box.svg';
-import PhotoshopIcon from '@assets/icons/tecnologies/Photoshop.svg';
-import IllustratorIcon from '@assets/icons/tecnologies/Illustrator.svg';
-import Cloudflare from "@assets/icons/tecnologies/Cloudflare.svg"
-import Resend from "@assets/icons/tecnologies/Resend.svg"
-import Java from "@assets/icons/tecnologies/Java.svg"
-import Datapack from "@assets/icons/tecnologies/Datapack.svg"
-import Expo from "@assets/icons/tecnologies/Expo.svg"
-import Supabase from "@assets/icons/tecnologies/Supabase.svg"
-import Mdx from "@assets/icons/tecnologies/Mdx.svg"
-import Json from "@assets/icons/tecnologies/Json.svg"
-import FabricMc from "@assets/icons/tecnologies/FabricMc.svg"
+import AstroIcon from "@assets/icons/Astro.svg";
+import TypescriptIcon from "@assets/icons/TypeScript.svg";
+import JavascriptIcon from "@assets/icons/Javascript.svg";
+import TailwindcssIcon from "@assets/icons/TailwindCSS.svg";
+import FigmaIcon from "@assets/icons/Figma.svg";
+import VercelIcon from "@assets/icons/Vercel.svg";
+import NextjsIcon from "@assets/icons/NextJS.svg";
+import ReactIcon from "@assets/icons/React.svg";
+import NodejsIcon from "@assets/icons/NodeJS.svg";
+import MysqlIcon from "@assets/icons/MySQL.svg";
+import BootstrapIcon from "@assets/icons/Bootstrap.svg";
+import SeoIcon from "@assets/icons/SEO.svg";
+import GoogleAnalitycsIcon from "@assets/icons/GoogleAnalytics.svg";
+import PhotoshopIcon from "@assets/icons/Photoshop.svg";
+import IllustratorIcon from "@assets/icons/Illustrator.svg";
+import Cloudflare from "@assets/icons/Cloudflare.svg";
+import Java from "@assets/icons/Java.svg";
+import Expo from "@assets/icons/Expo.svg";
+import Supabase from "@assets/icons/Supabase.svg";
+import FabricMc from "@assets/icons/FabricMc.svg";
+import type { SvgComponent } from "astro/types";
 
-export type Tecnology = { name: string; icon: ImageMetadata };
+export type Tecnology = { name: string; icon: SvgComponent; type: "frontend" | "backend" | "cloud" | "design" };
 
 export const tecnologies = {
-  Astro: { name: "Astro", icon: AstroIcon },
-  Preact: { name: "Preact", icon: PreactIcon },
-  Typescript: { name: "Typescript", icon: TypescriptIcon },
-  Javascript: { name: "Javascript", icon: JavascriptIcon },
-  Tailwindcss: { name: "Tailwindcss", icon: TailwindcssIcon },
-  Figma: { name: "Figma", icon: FigmaIcon },
-  Vercel: { name: "Vercel", icon: VercelIcon },
-  Nextjs: { name: "Nextjs", icon: NextjsIcon },
-  React: { name: "React", icon: ReactIcon },
-  Nodejs: { name: "Nodejs", icon: NodejsIcon },
-  Git: { name: "Git", icon: GitIcon },
-  Mysql: { name: "Mysql", icon: MysqlIcon },
-  Bootstrap: { name: "Bootstrap", icon: BootstrapIcon },
-  Seo: { name: "Seo", icon: SeoIcon },
-  GoogleAnalitycs: { name: "Google Analitycs", icon: GoogleAnalitycsIcon },
-  OracleVmVirtualBox: { name: "OracleVmVirtualBox", icon: OracleVmVirtualBoxIcon },
-  Photoshop: { name: "Photoshop", icon: PhotoshopIcon },
-  Illustrator: { name: "Illustrator", icon: IllustratorIcon },
-  Cloudflare: { name: "Cloudflare", icon: Cloudflare },
-  Resend: { name: "Resend", icon: Resend },
-  Java: {name: "Java", icon: Java},
-  Datapack: {name: "Datapack", icon: Datapack},
-  ReactNative: {name: "React Native", icon: ReactIcon},
-  Expo: {name: "Expo", icon: Expo},
-  Supabase: {name: "Supabase", icon: Supabase},
-  Mdx: {name: "Mdx", icon: Mdx},
-  Json: {name: "Json", icon: Json},
-  FabricMc: {name: "FabricMc", icon: FabricMc}
+  Astro: { name: "Astro", icon: AstroIcon, type: "frontend" },
+  Typescript: { name: "Typescript", icon: TypescriptIcon, type: "frontend" },
+  Javascript: { name: "Javascript", icon: JavascriptIcon, type: "frontend" },
+  Tailwindcss: { name: "Tailwindcss", icon: TailwindcssIcon, type: "frontend" },
+  Figma: { name: "Figma", icon: FigmaIcon, type: "design" },
+  Vercel: { name: "Vercel", icon: VercelIcon, type: "cloud" },
+  Nextjs: { name: "Nextjs", icon: NextjsIcon, type: "frontend" },
+  React: { name: "React", icon: ReactIcon, type: "frontend" },
+  Nodejs: { name: "Nodejs", icon: NodejsIcon, type: "frontend" },
+  Mysql: { name: "Mysql", icon: MysqlIcon, type: "backend" },
+  Bootstrap: { name: "Bootstrap", icon: BootstrapIcon, type: "frontend" },
+  Seo: { name: "Seo", icon: SeoIcon, type: "cloud" },
+  GoogleAnalitycs: { name: "Google Analitycs", icon: GoogleAnalitycsIcon, type: "cloud" },
+  Photoshop: { name: "Photoshop", icon: PhotoshopIcon, type: "design" },
+  Illustrator: { name: "Illustrator", icon: IllustratorIcon, type: "design" },
+  Cloudflare: { name: "Cloudflare", icon: Cloudflare, type: "cloud" },
+  Java: { name: "Java", icon: Java, type: "backend" },
+  ReactNative: { name: "React Native", icon: ReactIcon, type: "frontend" },
+  Expo: { name: "Expo", icon: Expo, type: "frontend" },
+  Supabase: { name: "Supabase", icon: Supabase, type: "backend" },
+  FabricMc: { name: "FabricMc", icon: FabricMc, type: "backend" },
 } satisfies Record<string, Tecnology>;
 
 export const tecnologiesList: Tecnology[] = Object.values(tecnologies);

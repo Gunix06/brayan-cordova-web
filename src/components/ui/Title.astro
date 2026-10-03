@@ -7,7 +7,7 @@ interface Props {
 const { id, title, description } = Astro.props as Props;
 ---
 
-<div class='flex pt-2 pb-4 md:pt-4 md:pb-8 xl:pt-8 xl:pb-16 flex-col items-center gap-1 text-center'>
-  <h2 id={id} class='f-h2 bg-linear-to-r from-neutral-50 from-40% to-neutral-50/60 bg-clip-text text-transparent'>{title}</h2>
-  <p class='text-neutral-400'>{description}</p>
+<div class="flex pt-2 pb-4 md:pt-4 md:pb-8 xl:pt-8 xl:pb-16 flex-col items-center gap-1 text-center">
+  <h2 id={id} class="bg-linear-to-r from-foreground from-85% to-background/60 bg-clip-text text-transparent">{title}</h2>
+  <p class="text-foreground-muted">{description}</p>
 </div>

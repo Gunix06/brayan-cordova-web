@@ -1,41 +1,56 @@
 ---
-import {certifications, habDiseño, habTecnicas} from "@/content/me";
+import { certifications } from "@/content/me";
+import { tecnologiesList } from "@/content/tecnologies";
 import Certification from "@components/ui/Certification.astro";
 import FrameworkCard from "@components/ui/FrameworkCard.astro";
 import Title from "@components/ui/Title.astro";
 ---
 
-<div class='flex flex-col items-center gap-6'>
-  <Title id='section-skill' title='Habilidades y certificaciones' description='El conjunto de lenguajes, frameworks y herramientas que utilizo para dar vida a mis desarrollos' />
+<div class="flex flex-col items-center gap-6">
+  <Title id="section-skill" title="Habilidades y certificaciones" description="El conjunto de lenguajes, frameworks y herramientas que utilizo para dar vida a mis desarrollos" />
 
-  <div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
-    <div class='flex flex-col gap-4 flex-[1_0_0%]'>
-      <div class='flex flex-col gap-3'>
-        <p class='font-bold'>Habilidades técnicas</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex flex-col gap-4 flex-[1_0_0%]">
+      <h3 class="font-bold text-primary-foreground">Habilidades técnicas</h3>
 
-        <diV class='flex flex-wrap gap-y-2 gap-x-2.5'>
-          {habTecnicas.map(hab => <FrameworkCard title={hab.name} Icon={hab.icon} />)}
+      <div class="flex flex-col gap-3">
+        <p class="font-bold">Frontend & Mobile</p>
+
+        <diV class="flex flex-wrap gap-y-2 gap-x-2.5">
+          {tecnologiesList.filter((hab) => hab.type === "frontend").map((hab) => <FrameworkCard title={hab.name} Icon={hab.icon} />)}
         </diV>
       </div>
 
-      <div class='flex flex-col gap-3'>
-        <p class='font-bold'>Habilidades de Diseño</p>
+      <div class="flex flex-col gap-3">
+        <p class="font-bold">Backend & Bases de Datos</p>
 
-        <diV class='flex flex-wrap gap-y-2 gap-x-2.5'>
-          {habDiseño.map(hab => <FrameworkCard title={hab.name} Icon={hab.icon} />)}
+        <diV class="flex flex-wrap gap-y-2 gap-x-2.5">
+          {tecnologiesList.filter((hab) => hab.type === "backend").map((hab) => <FrameworkCard title={hab.name} Icon={hab.icon} />)}
+        </diV>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <p class="font-bold">Cloud, DevOps & Analítica</p>
+
+        <diV class="flex flex-wrap gap-y-2 gap-x-2.5">
+          {tecnologiesList.filter((hab) => hab.type === "cloud").map((hab) => <FrameworkCard title={hab.name} Icon={hab.icon} />)}
+        </diV>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <p class="font-bold">Diseño & Prototipado</p>
+
+        <diV class="flex flex-wrap gap-y-2 gap-x-2.5">
+          {tecnologiesList.filter((hab) => hab.type === "design").map((hab) => <FrameworkCard title={hab.name} Icon={hab.icon} />)}
         </diV>
       </div>
     </div>
 
-    <div class='flex flex-col items-start gap-2.5 flex-[1_0_0%]'>
-      <p class='font-bold'>Certificaciones</p>
+    <div class="flex flex-col items-start gap-2.5 flex-[1_0_0%]">
+      <h3 class="font-bold text-primary-foreground">Certificaciones</h3>
 
-      <diV class='grid grid-cols-1 self-stretch gap-y-2 gap-x-2.5'>
-        {
-          certifications.map((cert) => (
-            <Certification title={cert.title} company={cert.empresa} link={cert.link} />
-          ))
-        }
+      <diV class="grid grid-cols-1 self-stretch gap-y-2 gap-x-2.5">
+        {certifications.map((cert) => <Certification title={cert.title} company={cert.company} link={cert.link} />)}
       </diV>
     </div>
   </div>

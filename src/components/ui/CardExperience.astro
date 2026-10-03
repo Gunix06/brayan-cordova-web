@@ -5,15 +5,15 @@ interface CardExperienceProps {
   description?: string;
   date: string;
 }
-const {title, emp, description, date} = Astro.props as CardExperienceProps;
+const { title, emp, description, date } = Astro.props as CardExperienceProps;
 ---
 
-<div class='flex flex-col items-start'>
-  <div class='flex flex-col gap-1'>
-    <p class='font-bold'>{title}</p>
-    <p class='f-sm font-bold bg-linear-to-r from-[#FF585B] to-red-500 bg-clip-text text-transparent'>{emp}</p>
-    {description && <p class='f-sm text-neutral-400'>{description}</p>}
+<div class="flex flex-col items-start">
+  <div class="flex flex-col gap-1">
+    <p class="font-bold">{title}</p>
+    <p class="text-sm font-bold text-primary-foreground">{emp}</p>
+    {description && <p class="text-sm text-foreground-muted">{description}</p>}
   </div>
 
-  <p class='f-sm text-neutral-300 text-center'>{date}</p>
+  <p class="text-sm text-foreground-muted text-center">{date}</p>
 </div>

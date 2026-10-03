@@ -2,15 +2,16 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface ButtonProps extends HTMLAttributes<"button"> {
-    href?: string;
-    label?: string;
+  href?: string;
+  label?: string;
 }
 
 const { href, label, class: className, ...rest } = Astro.props as ButtonProps;
 
-const Tag = href ? "a": "button";
+const Tag = href ? "a" : "button";
 ---
-<Tag href={href} class={`bg-red-600 hover:bg-red-800 duration-500 b-round inline-flex justify-center items-center gap-1 lg:gap-2 py-1 px-2 md:px-3 md:py-2 xl:px-4 ${className}`} {...rest}>
-    <slot/>
-    {label ? <div class="text-center justify-start f-sm text-nowrap">{label}</div>: null}
+
+<Tag href={href} class={`bg-primary hover:bg-primary-hover rounded inline-flex justify-center items-center gap-1 lg:gap-2 py-1 px-2 md:px-3 md:py-2 xl:px-4 transition ${className}`} {...rest}>
+  <slot />
+  {label ? <div class="text-center justify-start f-sm text-nowrap">{label}</div> : null}
 </Tag>

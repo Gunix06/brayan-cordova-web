@@ -1,9 +1,8 @@
-import { ActionError, defineAction } from 'astro:actions';
-import { Resend } from 'resend';
+import { ActionError, defineAction } from "astro:actions";
+import { Resend } from "resend";
 import { z } from "astro:content";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
-const emailSender = import.meta.env.EMAIL;
 
 const BIN_ID = import.meta.env.BIN_ID_A;
 const API_KEY = `$2a$10$${import.meta.env.BIN_ID_KEY_B}.${import.meta.env.BIN_ID_KEY_A}`;
@@ -15,33 +14,34 @@ const headers = {
 
 export const server = {
   send: defineAction({
-    accept: 'form',
+    accept: "form",
     input: z.object({
       name: z.string().nonempty(),
       email: z.string().email(),
       message: z.string().nonempty(),
-      'cf-turnstile-response': z.string().nonempty(),
+      "cf-turnstile-response": z.string().nonempty(),
     }),
     handler: async (input) => {
       const formData = new FormData();
-      formData.append('secret', import.meta.env.TURNSTILE_SECRET_KEY);
-      formData.append('response', input['cf-turnstile-response']);
+      formData.append("secret", import.meta.env.TURNSTILE_SECRET_KEY);
+      formData.append("response", input["cf-turnstile-response"]);
 
-      const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-      const result = await fetch(url, { body: formData, method: 'POST' });
+      const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+      const result = await fetch(url, { body: formData, method: "POST" });
       const outcome = await result.json();
 
       if (!outcome.success) {
         throw new ActionError({
-          code: 'BAD_REQUEST',
-          message: 'Fallo en la verificación de seguridad (Turnstile).',
+          code: "BAD_REQUEST",
+          message: `Fallo en Turnstile: ${outcome["error-codes"]?.join(", ") ?? "desconocido"}`,
         });
       }
 
       const { data, error } = await resend.emails.send({
-        from: emailSender,
-        to: [input.email, emailSender],
-        subject: 'Confirmación de recepción - Brayan Cordova (Frontend Developer)',
+        from: "Portafolio <onboarding@resend.dev>",
+        to: ["brayansmithcordovatasayco@gmail.com"],
+        replyTo: [input.email],
+        subject: "Confirmación de recepción - Brayan Cordova (Frontend Developer)",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #fb2c36; padding: 20px; text-align: center;">
@@ -67,7 +67,7 @@ export const server = {
 
       if (error) {
         throw new ActionError({
-          code: 'BAD_REQUEST',
+          code: "BAD_REQUEST",
           message: error.message,
         });
       }
@@ -83,14 +83,14 @@ export const server = {
 
         if (!res.ok) {
           throw new ActionError({
-            code: 'BAD_REQUEST',
+            code: "BAD_REQUEST",
             message: `${res.status}`,
           });
         }
 
         const data = await res.json();
 
-        if (data && data.record && typeof data.record.clicks !== 'undefined') {
+        if (data && data.record && typeof data.record.clicks !== "undefined") {
           return { clicks: data.record.clicks };
         } else {
           console.error(data);
@@ -98,7 +98,7 @@ export const server = {
       } catch (error) {
         console.error(error);
       }
-    }
+    },
   }),
 
   incrementClicks: defineAction({
@@ -108,13 +108,13 @@ export const server = {
 
         if (!getRes.ok) {
           throw new ActionError({
-            code: 'BAD_REQUEST',
+            code: "BAD_REQUEST",
             message: `${getRes.status}`,
           });
         }
 
         const getData = await getRes.json();
-        const currentClicks = (getData && getData.record && typeof getData.record.clicks === 'number') ? getData.record.clicks : 0;
+        const currentClicks = getData && getData.record && typeof getData.record.clicks === "number" ? getData.record.clicks : 0;
         const newClicks = currentClicks + 1;
 
         const putRes = await fetch(url, {
@@ -124,7 +124,7 @@ export const server = {
         });
         if (!putRes.ok) {
           throw new ActionError({
-            code: 'BAD_REQUEST',
+            code: "BAD_REQUEST",
             message: `${putRes.status}`,
           });
         }
@@ -132,6 +132,6 @@ export const server = {
       } catch (error) {
         console.error(error);
       }
-    }
-  })
+    },
+  }),
 };

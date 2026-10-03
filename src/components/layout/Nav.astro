@@ -4,20 +4,21 @@ import MobileNav from "@components/layout/MobileNav.astro";
 import { navigation } from "@/content/navigation";
 ---
 
-<nav class='w-full py-2 md:px-4 lg:px-6 xl:px-7 md:py-2 lg:py-4 xl:py-6 z-30 duration-500 px-2 pt-4 pb-2 inline-flex justify-between fixed backdrop-blur-xs bg-neutral-950/20'>
-  <div class='flex-col'>
-    <p class='font-bold f-sm'>Brayan Cordova</p>
-    <span class='text-neutral-400 f-sm'>Frontend Developer</span>
+<nav class="w-full py-2 md:px-4 lg:px-6 xl:px-7 md:py-2 lg:py-4 xl:py-6 z-30 duration-500 px-2 pt-4 pb-2 inline-flex justify-between fixed backdrop-blur-xs bg-background/30">
+  <div class="flex-col">
+    <p class="font-bold text-sm">Brayan Cordova</p>
   </div>
-  <div class='b-round border border-neutral-900 md:bg-neutral-950/50 md:flex gap-2 items-center'>
-    <button id='open-menu-btn' aria-label="Abrir menú principal">
-      <Menu class='cursor-pointer md:hidden' />
+  <div class="border border-background-tertiary md:bg-background/50 md:flex gap-2 items-center">
+    <button id="open-menu-btn" aria-label="Abrir menú principal">
+      <Menu class="cursor-pointer md:hidden" />
     </button>
-		{navigation.map(item => (
-			<a href={item.slug} class='px-3 py-2 hover:text-red-500 f-sm font-bold duration-500 max-md:hidden'>
-				{item.label}
-			</a>
-		))}
+    {
+      navigation.map((item) => (
+        <a href={item.slug} class="px-3 py-2 text-sm font-bold transition max-md:hidden">
+          {item.label}
+        </a>
+      ))
+    }
   </div>
 </nav>
 
@@ -45,11 +46,11 @@ import { navigation } from "@/content/navigation";
 
     closeMenuBtn?.addEventListener("click", closeMenu);
     menuOverlay?.addEventListener("click", closeMenu);
-    menuLinks.forEach(link => {
+    menuLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
 
-    document.addEventListener("keydown", e => {
+    document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileMenu?.classList.contains("active")) {
         closeMenu();
       }

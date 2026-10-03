@@ -5,25 +5,25 @@ import Corazon from "@assets/icons/Corazon.svg";
 import Button from "@components/ui/Button.astro";
 ---
 
-<div class='flex flex-col items-center justify-center gap-4 relative h-svh w-full px-2'>
-  <h1 class='f-h1 text-center bg-linear-to-r from-neutral-50 from-40% to-red-950 bg-clip-text text-transparent'>
+<div class="flex flex-col items-center justify-center gap-4 relative h-svh w-full">
+  <h1 class="text-center bg-linear-to-r from-neutral-50 from-40% to-primary bg-clip-text text-transparent">
     Transformando ideas en experiencias<br />
     rápidas y escalables
   </h1>
-  <div class='flex pt-7 pb-10 justify-center gap-5'>
-    <Button label='Ver Proyectos' href='#section-projects'>
-      <Work class='icon-min' />
+  <div class="flex pt-7 pb-10 justify-center gap-5">
+    <Button label="Ver Proyectos" href="#section-projects">
+      <Work class="size-3 lg:size-5" />
     </Button>
-    <Button label='Ver CV' href='https://drive.google.com/file/d/1gdxkLeqyuxV8LewtQDZoJ_BT15V_5hR4/view?usp=sharing'>
-      <Document class='icon-min' />
+    <Button label="Ver CV" href="https://drive.google.com/file/d/1gdxkLeqyuxV8LewtQDZoJ_BT15V_5hR4/view?usp=sharing">
+      <Document class="size-3 lg:size-5" />
     </Button>
-    <Button id='contador-clickeame' label='Clickeame :)'>
-      <Corazon class='icon-min' />
+    <Button id="contador-clickeame" label="Clickeame :)">
+      <Corazon class="size-3 lg:size-5" />
     </Button>
   </div>
-  <div id='corazon-final' style='display:none;' class='flex flex-row items-center gap-3 w-full justify-center duration-500 pt-4 md:pt-0'>
-    <Corazon class='icon-min animate-pop-abajo' style='margin-top: 0;' />
-    <span id='texto-clickeame' class='mt-0 f-sm text-left text-neutral-300 opacity-0'></span>
+  <div id="corazon-final" style="display:none;" class="flex flex-row items-center gap-3 w-full justify-center transition pt-4 md:pt-0">
+    <Corazon class="size-3 lg:size-5 animate-pop-abajo" style="margin-top: 0;" />
+    <span id="texto-clickeame" class="mt-0 text-sm text-left text-foreground-muted opacity-0"></span>
   </div>
 </div>
 
@@ -38,7 +38,7 @@ import Button from "@components/ui/Button.astro";
     if (localStorage.getItem("yaClickeo")) {
       btnClickeame.style.display = "none";
       corazonFinal.style.display = "flex";
-      getClicks().then(clicks => {
+      getClicks().then((clicks) => {
         textoClickeame.textContent = `Tú y ${clicks - 1} personas más lo clickearon :)`;
         setTimeout(() => {
           textoClickeame.classList.add("fade-in-smooth");
@@ -49,7 +49,7 @@ import Button from "@components/ui/Button.astro";
       corazonFinal.style.display = "none";
     }
 
-    btnClickeame.addEventListener("click", async e => {
+    btnClickeame.addEventListener("click", async (e) => {
       e.preventDefault();
       if (localStorage.getItem("yaClickeo")) return;
 

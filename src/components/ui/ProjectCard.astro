@@ -1,5 +1,5 @@
 ---
-import {Image} from "astro:assets";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
@@ -8,16 +8,16 @@ interface Props {
   link?: string;
 }
 
-const {title, description, image, link}: Props = Astro.props;
+const { title, description, image, link }: Props = Astro.props;
 ---
 
-<a href={link} class='flex flex-col b-round border bg-neutral-950 border-transparent [border-image:linear-gradient(0deg,#171717_0%,#0A0A0A00_100%)_1]'>
-  <Image src={image} alt={title} width={472} height={357} class='w-full object-cover b-round-t' />
-  <div class='flex p-4 flex-col gap-3'>
-    <h3 class='f-h3'>{title}</h3>
-    <p class='text-neutral-400 f-sm'>{description}</p>
+<a href={link} class="flex flex-col border rounded-2xl border-transparent [border-image:linear-gradient(0deg,#171717_0%,#0A0A0A00_100%)_1] overflow-clip">
+  <Image src={image} alt={title} width={472} height={357} class="w-full object-cover" />
+  <div class="flex p-4 flex-col gap-3">
+    <h3>{title}</h3>
+    <p class="text-sm text-foreground-muted">{description}</p>
   </div>
-  <div class='flex p-2.5 gap-2.5 flex-wrap'>
+  <div class="flex p-2.5 gap-2.5 flex-wrap">
     <slot />
   </div>
 </a>

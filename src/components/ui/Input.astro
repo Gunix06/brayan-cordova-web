@@ -1,5 +1,5 @@
 ---
-import type {HTMLAttributes} from "astro/types";
+import type { HTMLAttributes } from "astro/types";
 
 interface Props {
   name: string;
@@ -11,31 +11,16 @@ interface Props {
   textarea?: boolean;
 }
 
-const {name, label, type, placeholder, required = true, minlength = 5, textarea = false} = Astro.props;
+const { name, label, type, placeholder, required = true, minlength = 5, textarea = false } = Astro.props;
 ---
-<div class='flex flex-col gap-2 w-full'>
-  <label for={name} class='font-bold text-neutral-300 ml-1'>{label}</label>
+
+<div class="flex flex-col gap-2 w-full">
+  <label for={name} class="font-bold text-neutral-300 ml-1">{label}</label>
   {
     textarea ? (
-      <textarea
-        id={name}
-        name={name}
-        required={required}
-        rows='5'
-        minlength={minlength}
-        placeholder={placeholder}
-        class='f-sm px-2 pt-1 py-10 h-40 b-round border border-neutral-900 text-neutral-400'
-      />
+      <textarea id={name} name={name} required={required} rows="5" minlength={minlength} placeholder={placeholder} class="text-sm px-4 py-2 rounded-xl border border-background-tertiary " />
     ) : (
-      <input
-        type={type}
-        id={name}
-        name={name}
-        required={required}
-        minlength={minlength}
-        placeholder={placeholder}
-        class='f-sm px-2 py-1 b-round border border-neutral-900 text-neutral-400'
-      />
+      <input type={type} id={name} name={name} required={required} minlength={minlength} placeholder={placeholder} class="text-sm px-4 py-2 rounded-xl border border-background-tertiary " />
     )
   }
 </div>

@@ -2,44 +2,47 @@
 import X from "@assets/icons/X.svg";
 import Footer from "./Footer.astro";
 import { navigation } from "@/content/navigation";
-import { redes } from "@/content/redes";
+import { networks } from "@/content/me";
 ---
 
-<section id='mobile-menu' class='group fixed top-0 left-0 w-full h-full z-100 pointer-events-none [&.active]:pointer-events-auto'>
-  <div id='mobile-menu-overlay' class='absolute top-0 left-0 w-full h-full bg-black/70 backdrop-blur-xs opacity-0 transition-opacity duration-300 ease-out group-[.active]:opacity-100'></div>
+<section id="mobile-menu" class="group fixed top-0 left-0 w-full h-full z-100 pointer-events-none [&.active]:pointer-events-auto">
+  <div id="mobile-menu-overlay" class="absolute top-0 left-0 w-full h-full bg-background-secondary/70 backdrop-blur-xs opacity-0 transition ease-out group-[.active]:opacity-100"></div>
 
   <nav
-    id='mobile-menu-panel'
-    class='absolute top-0 right-0 w-[85%] max-w-[400px] h-full bg-[#0a0a0a] border-l border-neutral-800 translate-x-full transition-transform duration-400 ease-out overflow-y-auto shadow-[-10px_0_30px_rgba(0,0,0,0.5)] group-[.active]:translate-x-0 flex flex-col gap-5 min-h-full py-4 px-6'
+    id="mobile-menu-panel"
+    class="absolute top-0 right-0 w-[85%] max-w-100 h-full bg-background border-l border-background-tertiary translate-x-full transition ease-out overflow-y-auto shadow-[-10px_0_30px_rgba(0,0,0,0.5)] group-[.active]:translate-x-0 flex flex-col gap-5 min-h-full py-4 px-6"
   >
-    <div class='flex justify-between border-b-2 border-neutral-800 py-2'>
-      <div class='flex flex-col f-xs'>
-        <p class='font-bold'>Brayan Cordova</p>
-        <span class='text-neutral-400'>Frontend Developer</span>
+    <div class="flex justify-between border-b-2 border-background-tertiary py-2">
+      <div class="flex flex-col text-xs">
+        <p class="font-bold">Brayan Cordova</p>
       </div>
-			<button id='close-menu-btn' aria-label="Cerrar menú principal">
-				<X class='w-4 h-4 cursor-pointer' />
-			</button>
+      <button id="close-menu-btn" aria-label="Cerrar menú principal">
+        <X class="w-4 h-4 cursor-pointer" />
+      </button>
     </div>
 
-    <div class='flex flex-col justify-between items-start flex-[1_0_0%] self-stretch'>
-      <div class='flex flex-col items-start gap-3 self-stretch'>
-				{navigation.map(item => (
-					<a href={item.slug} class='font-bold mobile-nav-link hover:text-red-500 transition-colors duration-500 bg-neutral-900/50 w-full px-4 py-3 b-round border-2 border-neutral-900 hover:bg-neutral-900'>{item.label}</a>
-				))}
+    <div class="flex flex-col justify-between items-start flex-[1_0_0%] self-stretch">
+      <div class="flex flex-col items-start gap-3 self-stretch">
+        {
+          navigation.map((item) => (
+            <a href={item.slug} class="font-bold mobile-nav-link hover:text-primary transition bg-background/50 w-full px-4 py-3 b-round border-2 border-background-tertiary hover:bg-background">
+              {item.label}
+            </a>
+          ))
+        }
       </div>
 
-      <div class='flex py-5 flex-col items-start gap-5 self-stretch'>
-        <div class='flex justify-between items-start self-stretch'>
-					{
-						redes.map(item => (
-							<a href={item.href} class='p-3 rounded-full bg-[linear-gradient(0deg,#171717_0%,#0A0A0A00_100%)] border border-neutral-800 hover:border-neutral-200 transition-colors duration-500' aria-label={item.label}>
-									<item.icon class='size-5 cursor-pointer scale-100 transition-transform duration-500' />
-							</a>
-						))
-					}
+      <div class="flex py-5 flex-col items-start gap-5 self-stretch">
+        <div class="flex justify-between items-start self-stretch">
+          {
+            networks.map((item) => (
+              <a href={item.href} class="p-3 rounded-full bg-[linear-gradient(0deg,#171717_0%,#0A0A0A00_100%)] border border-background-tertiary hover:border-background-secondary transition" aria-label={item.label}>
+                <item.icon class="size-5 cursor-pointer scale-100 transition" />
+              </a>
+            ))
+          }
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   </nav>

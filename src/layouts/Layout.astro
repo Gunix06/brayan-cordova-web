@@ -3,47 +3,20 @@ import Footer from "@/components/layout/Footer.astro";
 import "../styles/global.css";
 import Nav from "@/components/layout/Nav.astro";
 import MetaTags from "@/components/layout/MetaTags.astro";
-import '@fontsource/kodchasan';
-import '@fontsource-variable/jost';
+import "@fontsource-variable/jost";
+import "@fontsource/kodchasan";
 ---
 
 <!doctype html>
-<html lang='es'>
+<html lang="es">
   <head>
-    <MetaTags
-      title={"Brayan Cordova | Desarrollador Web"}
-      description={"Especializado en ecosistemas React, Astro y desarrollo en Java. Transformo ideas en interfaces optimizadas y ecosistemas escalables."}
-      autor={"Brayan Cordova"}
-    />
+    <MetaTags title={"Brayan Cordova | Desarrollador Web"} description={"Especializado en ecosistemas React, Astro y desarrollo en Java. Transformo ideas en interfaces optimizadas y ecosistemas escalables."} autor={"Brayan Cordova"} />
   </head>
   <body>
     <Nav />
-    <main class='flex flex-col items-start w-full grow duration-300 f-base b-mb b-px gap-14 2xl:gap-24'>
+    <main class="flex flex-col items-start grow mx-4 lg:mx-20 py-4 gap-8 2xl:mx-44 2xl:py-8 2xl:gap-16 transition">
       <slot />
     </main>
     <Footer />
   </body>
 </html>
-
-<style>
-  body,
-  html {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fafafa;
-    gap: 10px;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0a0a0a;
-    background-image: radial-gradient(ellipse at top center, rgba(255, 0, 0, 0.3) 0%, transparent 40%), radial-gradient(circle at center, #0a0a0a 42%, #030000 98%, #0a0a0a 100%);
-    background-repeat: no-repeat, no-repeat;
-    background-position:
-      top center,
-      center center;
-    background-size: auto, cover;
-    background-attachment: scroll, fixed;
-    scroll-behavior: smooth;
-  }
-</style>

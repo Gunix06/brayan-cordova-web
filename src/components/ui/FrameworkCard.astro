@@ -1,15 +1,15 @@
 ---
-import type { SvgComponent } from 'astro/types';
+import type { SvgComponent } from "astro/types";
 
 interface Props {
   title: string;
-  Icon: SvgComponent
+  Icon: SvgComponent;
 }
 
-const {title, Icon}: Props = Astro.props;
+const { title, Icon }: Props = Astro.props;
 ---
 
-<div class='inline-flex px-4 py-2 items-center gap-2 b-round border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 duration-500'>
-  <Icon class='icon-min' />
-  <p class='f-sm'>{title}</p>
+<div class="inline-flex px-4 py-2 items-center gap-2 b-round border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 duration-500 text-foreground">
+  <Icon class="size-4" />
+  <p class="text-sm">{title}</p>
 </div>
